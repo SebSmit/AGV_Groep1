@@ -11,6 +11,8 @@ int main(void)
     while(1)
     {
         DDRB = (1 << PB7);
+
+        //Dikke banaan
     }
 
     return 0;

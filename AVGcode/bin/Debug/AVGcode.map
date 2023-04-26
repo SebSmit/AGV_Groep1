@@ -459,16 +459,16 @@ END GROUP
  *(.debug_addr)
 
 .debug_line_str
-                0x0000000000000000      0x116
+                0x0000000000000000      0x149
  *(.debug_line_str)
  .debug_line_str
                 0x0000000000000000       0x81 obj\Debug\fuse.o
                                          0xcc (size before relaxing)
  .debug_line_str
-                0x0000000000000081       0x42 obj\Debug\main.o
-                                         0xca (size before relaxing)
+                0x0000000000000081       0x75 obj\Debug\main.o
+                                         0xb6 (size before relaxing)
  .debug_line_str
-                0x00000000000000c3       0x53 c:/program files (x86)/avr-gcc-12.0.1/bin/../lib/gcc/avr/12.1.0/avr6\libgcc.a(_exit.o)
+                0x00000000000000f6       0x53 c:/program files (x86)/avr-gcc-12.0.1/bin/../lib/gcc/avr/12.1.0/avr6\libgcc.a(_exit.o)
                                          0x5f (size before relaxing)
 
 .debug_loclists
