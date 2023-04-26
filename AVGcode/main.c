@@ -11,12 +11,12 @@ int main(void)
     while(1)
     {
         DDRB = (1 << PB7);
-<<<<<<< Updated upstream
-=======
+
 
         //Dikke banaan
         //dikke lul 3 bier
->>>>>>> Stashed changes
+        //updaaatee
+
     }
 
     return 0;
