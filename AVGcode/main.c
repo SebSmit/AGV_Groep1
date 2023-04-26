@@ -11,7 +11,9 @@ int main(void)
     while(1)
     {
         DDRB = (1 << PB7);
-
+        while (1){
+            PORTB ^=(1<<PB6);
+        }
 
         //Dikke banaan
 
