@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1682509169 source:c:\users\sebas\documents\github\agv_groep1\avgcode\fuse.c
+	<avr/io.h>
+
+1682508369 source:c:\users\nickr\onedrive\documenten\github\agv_groep1\avgcode\fuse.c
+	<avr/io.h>
+
