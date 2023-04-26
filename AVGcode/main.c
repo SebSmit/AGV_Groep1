@@ -16,9 +16,9 @@ int main(void)
         //Dikke banaan
 
 
-        //Dikke banaan
-        //dikke lul 3 bier
-        //updaaatee
+        //comment (commentaar)
+        //dikke sebas 3 bier
+
 
     }
 
