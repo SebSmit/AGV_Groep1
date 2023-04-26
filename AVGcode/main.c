@@ -12,7 +12,14 @@ int main(void)
     {
         DDRB = (1 << PB7);
 
+
         //Dikke banaan
+
+
+        //Dikke banaan
+        //dikke lul 3 bier
+        //updaaatee
+
     }
 
     return 0;
