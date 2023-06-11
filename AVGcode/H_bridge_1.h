@@ -1,13 +1,13 @@
 #ifndef _H_BRIDGE_1_H_
 #define _H_BRIDGE_1_H_
 
-#define port_R1	PORTC // 11
-#define pin_R1	PC0
-#define ddr_R1	DDRC
+#define port_R1	PORTK
+#define pin_R1	PK5
+#define ddr_R1	DDRK
 
-#define port_L1	PORTC // 10
-#define pin_L1	PC1
-#define ddr_L1	DDRC
+#define port_L1	PORTK
+#define pin_L1	PK4
+#define ddr_L1	DDRK
 
 //37 36
 

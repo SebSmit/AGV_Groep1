@@ -43,7 +43,7 @@ void init_motor_1(void)
 
 	// prescale 64
 	TCCR1A = 0;
-	TCCR1B = (0<<CS12) | (1<<CS11) | (1<<CS10);
+	TCCR1B = (0<<CS12) | (0<<CS11) | (1<<CS10);
 
 	// standaard 0
 	OCR1A = 0;
