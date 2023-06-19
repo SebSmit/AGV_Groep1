@@ -33,9 +33,9 @@
 	<avr/io.h>
 	<avr/interrupt.h>
 
-1686210542 c:\users\sebas\documents\github\agv_groep1\avgcode\ultra_sonic_front.h
+1686221800 c:\users\sebas\documents\github\agv_groep1\avgcode\ultra_sonic_front.h
 
-1686166091 source:c:\users\sebas\documents\github\agv_groep1\avgcode\main.c
+1687182412 source:c:\users\sebas\documents\github\agv_groep1\avgcode\main.c
 	<avr/io.h>
 	<avr/interrupt.h>
 	<util/delay.h>
@@ -49,7 +49,7 @@
 	<util/delay.h>
 	<avr/interrupt.h>
 
-1686143406 source:c:\users\sebas\documents\github\agv_groep1\avgcode\gyro.c
+1687182521 source:c:\users\sebas\documents\github\agv_groep1\avgcode\gyro.c
 	<avr/io.h>
 	<util/delay.h>
 	<avr/interrupt.h>

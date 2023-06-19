@@ -42,17 +42,23 @@ int main(void)
     int TargetHeading = 360;
     int Afstand = 0;
     int Difference =0;
+    int HeadingDifference = 0;
 
     int CurrentKolom = 1;
 
     int printgetal;
     DDRB |= ((1<<PB7) | (1<<PB6));
-    PORTB |= (1<<PB7);
-    PORTB &= (1<<PB6);
+    PORTB |= ((1<<PB7) | (1<<PB6));
+    DDRE |= (1<<PE5);
+    PORTE |= (1<<PE5);
     while(1)
     {
 
-        /*while(ConfirmKnop() == 0){
+        /*while(RedSwitch() == 0){
+            Motor_1_set_power(0);
+            Motor_2_set_power(0);
+            CurrentHeading = UpdateHeading(CurrentHeading);
+
             if(ModeSwitch1()){
                 wait_ms(300);
                 LightSwap();
@@ -67,7 +73,7 @@ int main(void)
             }
         }*/
         while(VolgModus == 1){
-            /*if(ModeSwitchReset()){
+            /*if(RedSwitch()){
                 VolgModus = 0;
                 KolommenModus = 0;
             }*/
@@ -76,7 +82,17 @@ int main(void)
             Difference = Afstand - VolgTarget;
             display_getal(Afstand);
 
+            CurrentHeading = UpdateHeading(CurrentHeading);
+            HeadingDifference = TargetHeading - CurrentHeading;
 
+            if (HeadingDifference > 3){
+                Motor_1_set_power(35);
+                Motor_2_set_power(25);
+            }
+            if (HeadingDifference < -3){
+                Motor_1_set_power(25);
+                Motor_2_set_power(35);
+            }
             if (Difference > 200){
                 Motor_1_set_power(35);
                 Motor_2_set_power(35);
@@ -106,48 +122,60 @@ int main(void)
                 Motor_2_set_power(0);
             }
 
-
         }
         while(KolommenModus == 1){
-                CurrentHeading = UpdateHeading(CurrentHeading);
-                printgetal = (int)CurrentHeading;
-                display_getal(printgetal);
-                Difference = TargetHeading - CurrentHeading;
+            /*if(RedSwitch()){
+                VolgModus = 0;
+                KolommenModus = 0;
+            }*/
 
-                if(Difference > 3){
-                    //stuur naar links
-                    Motor_1_set_power(20);
-                    Motor_2_set_power(17);
-                }
-                if(Difference > 8){
-                    //stuur naar links
-                    Motor_1_set_power(20);
-                    Motor_2_set_power(13);
-                }
-                if(Difference < -3){
-                    //stuur naar rechts
-                    Motor_1_set_power(17);
-                    Motor_2_set_power(20);
-                }
-                if(Difference < -8){
-                    //stuur naar rechts
-                    Motor_1_set_power(13);
-                    Motor_2_set_power(20);
-                }
-                if ( -3 < Difference && Difference < 3){
-                    Motor_1_set_power(20);
-                    Motor_2_set_power(20);
-                }
-                /*if(BoomDetectie() == 1){
-                    Motor_1_set_power(0);
-                    Motor_2_set_power(0);
-                    LightSwap();
-                    wait_ms(2000);
-                    LightSwap();
-                    Motor_1_set_power(20);
-                    Motor_2_set_power(20);
-                    wait_ms(500);
-                }*/
+            int AfstandLinks = GetDistanceLeft();
+            int AfstandRechts = GetDistanceRight();
+            CurrentHeading = UpdateHeading(CurrentHeading);
+            printgetal = (int)CurrentHeading;
+            display_getal(printgetal);
+            Difference = TargetHeading - CurrentHeading;
+
+            if(Difference > 1){
+                //stuur naar links
+                Motor_1_set_power(50);
+                Motor_2_set_power(45);
+            }
+            if(Difference > 3){
+                //stuur naar links
+                Motor_1_set_power(50);
+                Motor_2_set_power(40);
+            }
+            if(Difference > 8){
+                //stuur naar links
+                Motor_1_set_power(50);
+                Motor_2_set_power(20);
+            }
+            if(Difference < -1){
+                //stuur naar rechts
+                Motor_1_set_power(45);
+                Motor_2_set_power(50);
+            }
+            if(Difference < -3){
+                //stuur naar rechts
+                Motor_1_set_power(40);
+                Motor_2_set_power(50);
+            }
+            if(Difference < -8){
+                //stuur naar rechts
+                Motor_1_set_power(20);
+                Motor_2_set_power(50);
+            }
+            if ( -1 < Difference && Difference < 1){
+                Motor_1_set_power(50);
+                Motor_2_set_power(50);
+            }
+            if(BoomDetectie() == 1){
+                Motor_1_set_power(0);
+                Motor_2_set_power(0);
+                GeluidSignaal();
+                wait_ms(2000);
+            }
         }
 
 
@@ -164,19 +192,14 @@ void init (void){
     init_motor_1();
     init_motor_2();
     init_Gyro();
+    PORTK &= ~(1<<PK0);
     sei();
 }
 
-int ConfirmKnop(){
-    if (PINF & (1<<PF0)){//A0
-        return 1;
-    }
-    else{
-        return 0;
-    }
-}
+
+// 48 46 44
 int ModeSwitch1(){
-    if (PINF & (1<<PF1)){//A1
+    if (PINL & (1<<PL1)){//D48
         return 1;
     }
     else{
@@ -184,15 +207,15 @@ int ModeSwitch1(){
     }
 }
 int ModeSwitch2(){
-    if (PINF & (1<<PF2)){//A2
+    if (PINL & (1<<PL3)){//D46
         return 1;
     }
     else{
         return 0;
     }
 }
-int ModeSwitchReset(){
-    if (PINF & (1<<PF2)){//A2
+int RedSwitch(){
+    if (PINL & (1<<PL5)){//D44
         return 1;
     }
     else{
@@ -200,7 +223,7 @@ int ModeSwitchReset(){
     }
 }
 int KolomIR(){
-    if (PINF & (1<<PF3)){//A3
+    if (PINK & (1<<PK0)){//A8
         return 1;
     }
     else{
@@ -211,8 +234,21 @@ int KolomIR(){
 int BoomDetectie(){
     int afstand_Links = GetDistanceLeft();
     int afstand_Rechts = GetDistanceRight();
-    if ((afstand_Links <= 60) | (afstand_Rechts <= 60)){
+    int LinksDetectie = 0;
+    int RechtsDetectie = 0;
+    if (afstand_Links <= 90 & LinksDetectie == 0){
+        LinksDetectie = 1;
         return 1;
+    }
+    if(afstand_Links > 120){
+        LinksDetectie = 0;
+    }
+    if (afstand_Rechts <= 90 & RechtsDetectie == 0){
+        RechtsDetectie = 1;
+        return 1;
+    }
+    if(afstand_Rechts > 120){
+        RechtsDetectie = 0;
     }
     else{
         return 0;
@@ -223,6 +259,19 @@ int BoomDetectie(){
 void LightSwap(void){
     PORTB ^= (1<<PB7);
     PORTB ^= (1<<PB6);
+}
+void GeluidSignaal(void){
+    PORTE &= ~(1<<PE5);
+    wait_ms(40);
+    PORTE |= (1<<PE5);
+    wait_ms(60);
+    PORTE &= ~(1<<PE5);
+    wait_ms(40);
+    PORTE |= (1<<PE5);
+    wait_ms(150);
+    PORTE &= ~(1<<PE5);
+    wait_ms(70);
+    PORTE |= (1<<PE5);
 }
 
 
