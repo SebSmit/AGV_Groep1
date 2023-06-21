@@ -600,6 +600,28 @@ void dummyben(void)
     }
 }
 
+void yourisdummy()
+{
+    {
+	DDRB |= (1<<PB7) | (1<<PB5);
+	PORTB &= ~(1<<PB7);
+
+
+
+	while (1)
+	{
+		if ((PINF & (1<<PF1)) == 0)
+		{
+			PORTB &= ~(1<<PB5);
+		}
+		else
+		{
+			PORTB |= (1<<PB5);
+		}
+	}
+}
+}
+
 
 
 
