@@ -622,7 +622,60 @@ void yourisdummy()
 }
 }
 
+void RobinDum(void)
+{
+    void init_led(void)
+    {
+        DDRB |= (1<<PB7);
+        PORTB |= (1<<PB7);
+    }
 
+    void init_timer1(void)
+    {
+        TCCR1A = 0;
+        TCCR1B = (1<<CS12) | (0<<CS11) | (0<<CS10);
+        TCNT1 = 34286;
+    }
+
+    void init(void)
+    {
+        init_led();
+        init_timer1();
+    }
+
+    void led_D1_on(void)
+    {
+        PORTB &= ~(1<<PB7);
+    }
+
+    void led_D1_off(void)
+    {
+        PORTB |= (1<<PB7);
+    }
+
+    void led_D1_toggle(void)
+    {
+        PORTB ^= (1<<PB7);
+    }
+
+    int main(void)
+    {
+        init();
+
+        while (1)
+        {
+            if (TIFR1 & (1<<TOV1))
+            {
+                // Re-init tcnt
+                TCNT1 = 34286;
+                // Clear flag
+                TIFR1 = (1<<TOV1);
+                // Toggle led D1
+                led_D1_toggle();
+            }
+        }
+    }
+}
 
 
 
