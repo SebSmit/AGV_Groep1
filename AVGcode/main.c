@@ -559,3 +559,52 @@ void display_getal(unsigned int getal)
 		_delay_ms(1);   // 1 kHz
 	}
 }
+
+
+
+void dummyben(void)
+{
+
+   DDRB = 0b11000000;
+    int led1 = 1;
+    int led2 = 0;
+    int tellen1 = 0;
+    int tellen2 = 0;
+
+    begin:
+    while(led1 <= 5  )
+    {
+        PORTB = 0b11000000;
+        _delay_ms (500);
+        PORTB = 0b01000000;
+        _delay_ms (500);
+        led1 = led1 + 1;
+    }
+
+
+    while(led1 >5)
+    {
+        PORTB = 0b11000000;
+        _delay_ms (500);
+        PORTB = 0b10000000;
+        _delay_ms (500);
+        led1 = led1 + 1;
+
+     if (led1 == 11)
+     {
+        led1 = 0;
+        goto begin;
+
+     }
+
+    }
+}
+
+
+
+
+
+
+
+
+
