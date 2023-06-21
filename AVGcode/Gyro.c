@@ -62,7 +62,7 @@ int16_t MPU6050_ReadGyro(uint8_t reg) {
 
 float Read_Gyro_X(void){
     int16_t GyroX = MPU6050_ReadGyro(0x43);
-    GyroX += 230;
+    GyroX += 248;
     float GyroX_degPerSec = (float)GyroX / 131.0;
     return GyroX_degPerSec;
 }
