@@ -105,14 +105,14 @@
 	<util/delay.h>
 	<avr/interrupt.h>
 
-1687342635 source:c:\users\ybeug\documents\github\agv_groep1\avgcode\h_bridge_1.c
+1687417491 source:c:\users\ybeug\documents\github\agv_groep1\avgcode\h_bridge_1.c
 	"h_bridge_1.h"
 	<avr/io.h>
 	<avr/interrupt.h>
 
 1687342635 c:\users\ybeug\documents\github\agv_groep1\avgcode\h_bridge_1.h
 
-1687343209 source:c:\users\ybeug\documents\github\agv_groep1\avgcode\h_bridge_2.c
+1687417491 source:c:\users\ybeug\documents\github\agv_groep1\avgcode\h_bridge_2.c
 	"h_bridge_2.h"
 	<avr/io.h>
 	<avr/interrupt.h>
