@@ -141,14 +141,14 @@
 	<util/delay.h>
 	<avr/interrupt.h>
 
-1687342987 source:c:\users\robin\documents\github\agv_groep1\avgcode\h_bridge_1.c
+1687422379 source:c:\users\robin\documents\github\agv_groep1\avgcode\h_bridge_1.c
 	"h_bridge_1.h"
 	<avr/io.h>
 	<avr/interrupt.h>
 
 1687342988 c:\users\robin\documents\github\agv_groep1\avgcode\h_bridge_1.h
 
-1687342988 source:c:\users\robin\documents\github\agv_groep1\avgcode\h_bridge_2.c
+1687422379 source:c:\users\robin\documents\github\agv_groep1\avgcode\h_bridge_2.c
 	"h_bridge_2.h"
 	<avr/io.h>
 	<avr/interrupt.h>
@@ -162,4 +162,13 @@
 	<avr/interrupt.h>
 
 1687342988 c:\users\robin\documents\github\agv_groep1\avgcode\ultra_sonic_front.h
+
+1687427228 source:c:\users\robin\documents\github\agv_groep1\avgcode\main.c
+	<avr/io.h>
+	<avr/interrupt.h>
+	<util/delay.h>
+	"Ultra_Sonic_Front.h"
+	"H_bridge_1.h"
+	"H_bridge_2.h"
+	"Gyro.h"
 
