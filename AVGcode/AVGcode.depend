@@ -163,3 +163,12 @@
 
 1687342988 c:\users\robin\documents\github\agv_groep1\avgcode\ultra_sonic_front.h
 
+1687427228 source:c:\users\robin\documents\github\agv_groep1\avgcode\main.c
+	<avr/io.h>
+	<avr/interrupt.h>
+	<util/delay.h>
+	"Ultra_Sonic_Front.h"
+	"H_bridge_1.h"
+	"H_bridge_2.h"
+	"Gyro.h"
+
