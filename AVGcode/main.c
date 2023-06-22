@@ -51,44 +51,51 @@ int main(void)
     int InKolom = 1;
 
     int printgetal;
-    DDRB |= ((1<<PB7) | (1<<PB6));
-    PORTB |= ((1<<PB7) | (1<<PB6));
+    DDRB |= ((1<<PB7) | (1<<PB6) | (1<<PB5));
+    PORTB |= ((1<<PB7) | (1<<PB6) | (1<<PB5));
     DDRE |= (1<<PE5);
     PORTE |= (1<<PE5);
     while(1)
     {
 
-        /*while(RedSwitch() == 0){
+        while(RedSwitch() == 0){
             Motor_1_set_power(0);
             Motor_2_set_power(0);
+            PORTB &= ~(1<<PB7);
+            PORTB |= ((1<<PB6) | (1<<PB5));
             CurrentHeading = UpdateHeading(CurrentHeading);
 
             if(ModeSwitch1()){
-                wait_ms(300);
-                LightSwap();
+                PORTB &= ~(1<<PB6);
                 VolgModus = 1;
                 KolommenModus = 0;
             }
             if(ModeSwitch2()){
-                wait_ms(300);
-                LightSwap();
+                PORTB &= ~(1<<PB5);
                 VolgModus = 0;
                 KolommenModus = 1;
             }
-        }*/
+        }
+        wait_ms(1000);
+        PORTB |= (1<<PB7);
         while(TestModus == 1){
-            int AfstandLinks = GetDistanceLeft();
-            int AfstandRechts = GetDistanceRight();
-            int Afstand = GetDistanceFront();
-            CurrentHeading = UpdateHeading(CurrentHeading);
-            printgetal = (int)CurrentHeading;
-            display_getal(printgetal);
+            PORTB |= ((1<<PB7) | (1<<PB6) | (1<<PB5));
+            if(RedSwitch()){
+                PORTB &= ~(1<<PB7);
+                wait_ms(300);
+            }
+            if(ModeSwitch1()){//onder
+                PORTB &= ~(1<<PB6);
+            }
+            if(ModeSwitch2()){ //boven
+                PORTB &= ~(1<<PB5);
+            }
         }
         while(VolgModus == 1){
-            /*if(RedSwitch()){
+            if(RedSwitch()){
                 VolgModus = 0;
                 KolommenModus = 0;
-            }*/
+            }
 
             Afstand = GetDistanceFront();
             Difference = Afstand - VolgTarget;
@@ -136,10 +143,10 @@ int main(void)
 
         }
         while(KolommenModus == 1){
-            /*if(RedSwitch()){
+            if(RedSwitch()){
                 VolgModus = 0;
                 KolommenModus = 0;
-            }*/
+            }
 
             Afstand = GetDistanceFront();
             FrontDifference = Afstand - VolgTarget;
@@ -233,10 +240,8 @@ int main(void)
             }
             if(InKolom == 0){
                 display_getal(0000);
-                    BochtMaken();
-                    CurrentKolom++;
-                        Motor_1_set_power(0);
-                        Motor_2_set_power(0);
+                BochtMaken();
+                CurrentKolom++;
                 TargetHeading = 538;
                 InKolom = 1;
             }
@@ -259,14 +264,22 @@ void init (void){
     init_motor_1();
     init_motor_2();
     init_Gyro();
-    PORTK &= ~(1<<PK0);
+    DDRK &= ~(1<<PK0);
+
+    DDRJ &= ~(1<<PJ1);
+    DDRD &= ~(1<<PD2);
+    DDRD &= ~(1<<PD3);
+
+
+
+
     sei();
 }
 
 
 // 48 46 44
 int ModeSwitch1(){
-    if (PINL & (1<<PL1)){//D48
+    if (PINJ & (1<<PJ1)){//D15
         return 1;
     }
     else{
@@ -274,7 +287,7 @@ int ModeSwitch1(){
     }
 }
 int ModeSwitch2(){
-    if (PINL & (1<<PL3)){//D46
+    if (PIND & (1<<PD3)){//D16
         return 1;
     }
     else{
@@ -282,7 +295,7 @@ int ModeSwitch2(){
     }
 }
 int RedSwitch(){
-    if (PINL & (1<<PL5)){//D44
+    if (PIND & (1<<PD2)){//D14
         return 1;
     }
     else{
