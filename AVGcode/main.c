@@ -77,13 +77,12 @@ int main(void)
             }
         }*/
         while(TestModus == 1){
-
             int AfstandLinks = GetDistanceLeft();
             int AfstandRechts = GetDistanceRight();
             int Afstand = GetDistanceFront();
             CurrentHeading = UpdateHeading(CurrentHeading);
             printgetal = (int)CurrentHeading;
-            display_getal(AfstandRechts);
+            display_getal(printgetal);
         }
         while(VolgModus == 1){
             /*if(RedSwitch()){
@@ -92,7 +91,7 @@ int main(void)
             }*/
 
             Afstand = GetDistanceFront();
-            FrontDifference = Afstand - VolgTarget;
+            Difference = Afstand - VolgTarget;
             display_getal(Afstand);
 
             CurrentHeading = UpdateHeading(CurrentHeading);
@@ -227,13 +226,18 @@ int main(void)
                     if(InKolom == 2){
                         InKolom =0;
                     }
-                    display_getal(0000);
+                    else{
+                       display_getal(0000);
+                    }
                 }
             }
             if(InKolom == 0){
                 display_getal(0000);
-                BochtMaken();
-                TargetHeading = 540;
+                    BochtMaken();
+                    CurrentKolom++;
+                        Motor_1_set_power(0);
+                        Motor_2_set_power(0);
+                TargetHeading = 538;
                 InKolom = 1;
             }
 
@@ -370,24 +374,24 @@ void TurnTo(int TargetHeading){
         printgetal = (int)CurrentHeading;
         display_getal(printgetal);
         if(Difference > 0){
-            Motor_1_set_power(25);
-            Motor_2_set_power(-25);
+            Motor_1_set_power(32);
+            Motor_2_set_power(-32);
         }
         if(Difference > 10){
-            Motor_1_set_power(35);
-            Motor_2_set_power(-35);
+            Motor_1_set_power(38);
+            Motor_2_set_power(-38);
         }
         if(Difference > 20){
             Motor_1_set_power(45);
             Motor_2_set_power(-45);
         }
         if(Difference < 0){
-            Motor_1_set_power(-25);
-            Motor_2_set_power(25);
+            Motor_1_set_power(-32);
+            Motor_2_set_power(32);
         }
         if(Difference < -10){
-            Motor_1_set_power(-35);
-            Motor_2_set_power(35);
+            Motor_1_set_power(-38);
+            Motor_2_set_power(38);
         }
         if(Difference < -20){
             Motor_1_set_power(-45);
@@ -447,11 +451,11 @@ void Drive(int RijAfstand,int TargetHeading){
 }
 void BochtMaken(void){
     wait_ms(500);
-    Drive(100, 360);
+    Drive(130, 360);
     TurnTo(450);
-    Drive(180, 450);
-    TurnTo(540);
-    Drive(70, 540);
+    Drive(265, 450);
+    TurnTo(538);
+    Drive(100, 538);
 }
 
 void initTimer(void)
@@ -562,7 +566,7 @@ void display_getal(unsigned int getal)
 
 
 
-void dummyben(void)
+/*void dummyben(void)
 {
 
    DDRB = 0b11000000;
@@ -676,7 +680,7 @@ void RobinDum(void)
         }
     }
 }
-
+*/
 
 
 
