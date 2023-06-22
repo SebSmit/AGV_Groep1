@@ -57,11 +57,11 @@ void Motor_1_set_power(signed char power)
 	if (power >= -100 && power <= 100){
 		if (power >= 0){
 			OCR1B = 0;
-			OCR1A = (65535*power)/100;
+			OCR1A = (65535*power)/85;
 		}
 		else {
 			OCR1A = 0;
-			OCR1B = (65535*power)/-100;
+			OCR1B = (65535*power)/-85;
 		}
 	}
 }
