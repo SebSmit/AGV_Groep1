@@ -9,10 +9,10 @@
 #include "Gyro.h"
 
 
-/*Aanpassing 11:49 Sebastiaan Smit*/
+/*Aanpassing 11:52 Sebastiaan Smit*/
 
 //Robin's aanpasing
-//Nick zijn aanpassing
+//Nick zijn aanpassing 11:52
 
 
 
