@@ -8,6 +8,22 @@
 #include "H_bridge_2.h"
 #include "Gyro.h"
 
+
+/*Aanpassing 11:44 Sebastiaan Smit*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* PORT List
 
 Ultra sonic Trig:
