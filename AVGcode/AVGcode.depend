@@ -69,14 +69,14 @@
 	<util/delay.h>
 	<avr/interrupt.h>
 
-1687342444 source:c:\users\benva\onedrive\documents\github\agv_groep1\avgcode\h_bridge_1.c
+1687417535 source:c:\users\benva\onedrive\documents\github\agv_groep1\avgcode\h_bridge_1.c
 	"h_bridge_1.h"
 	<avr/io.h>
 	<avr/interrupt.h>
 
 1687342444 c:\users\benva\onedrive\documents\github\agv_groep1\avgcode\h_bridge_1.h
 
-1687342638 source:c:\users\benva\onedrive\documents\github\agv_groep1\avgcode\h_bridge_2.c
+1687417535 source:c:\users\benva\onedrive\documents\github\agv_groep1\avgcode\h_bridge_2.c
 	"h_bridge_2.h"
 	<avr/io.h>
 	<avr/interrupt.h>
